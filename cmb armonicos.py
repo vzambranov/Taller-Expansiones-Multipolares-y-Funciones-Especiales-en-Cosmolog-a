@@ -47,11 +47,11 @@ def combo_Ylm(terms):
 
 cases_indiv = [
     (2,  0, "Cuadrupolo $Y_2^0$\n(dipolo en latitud)"),
-    (2,  2, r"Cuadrupolo $Y_2^2$\n(patrón azimutal $\times$2)"), # CORREGIDO: r"..."
-    (10, 0, r"Multipolo $\ell=10$, $m=0$\n(bandas latitudinales)"), # CORREGIDO: r"..."
-    (10, 5, r"Multipolo $\ell=10$, $m=5$\n(estructura mixta)"), # CORREGIDO: r"..."
-    (30, 0, r"Multipolo $\ell=30$, $m=0$\n(escalas angulares pequeñas)"), # CORREGIDO: r"..."
-    (30, 15, r"Multipolo $\ell=30$, $m=15$\n(escalas angulares pequeñas)"), # CORREGIDO: r"..."
+    (2,  2, r"Cuadrupolo $Y_2^2$\n(patrón azimutal $\times$2)"), 
+    (10, 0, r"Multipolo $\ell=10$, $m=0$\n(bandas latitudinales)"), 
+    (10, 5, r"Multipolo $\ell=10$, $m=5$\n(estructura mixta)"), 
+    (30, 0, r"Multipolo $\ell=30$, $m=0$\n(escalas angulares pequeñas)"), 
+    (30, 15, r"Multipolo $\ell=30$, $m=15$\n(escalas angulares pequeñas)"), 
 ]
 
 fig1, axes1 = plt.subplots(2, 3, figsize=(16, 9),
@@ -72,7 +72,7 @@ for ax, (l, m, title) in zip(axes1.flat, cases_indiv):
     ax.set_xticklabels([]); ax.set_yticklabels([])
     ax.grid(color="k", linewidth=0.3, alpha=0.4)
     plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.7,
-                 label=r"$\Delta T/T$") # CORREGIDO: r"..."
+                 label=r"$\Delta T/T$") 
 
 fig1.tight_layout()
 fig1.savefig(os.path.join(OUTPUT_DIR, "fig1_individuales.png"), bbox_inches="tight", dpi=150)
@@ -110,9 +110,9 @@ fig2.suptitle("Comparación: Multipolos Bajos vs Altos\n"
               fontsize=14, fontweight="bold")
 
 panels = [
-    (low_field,  r"Multipolos Bajos ($\ell=2,3$)" "\nEstructura a gran escala angular"), # CORREGIDO: r"..."
-    (high_field, r"Multipolos Altos ($\ell=20$–$30$)" "\nEstructura a pequeña escala angular"), # CORREGIDO: r"..."
-    (all_field,  r"Suma Total (bajos + altos)" "\nAnisotropía compuesta del CMB"), # CORREGIDO: r"..."
+    (low_field,  r"Multipolos Bajos ($\ell=2,3$)" "\nEstructura a gran escala angular"), 
+    (high_field, r"Multipolos Altos ($\ell=20$–$30$)" "\nEstructura a pequeña escala angular"), 
+    (all_field,  r"Suma Total (bajos + altos)" "\nAnisotropía compuesta del CMB"), 
 ]
 
 for ax, (data, title) in zip(axes2, panels):
@@ -141,16 +141,16 @@ high_eq = np.real(sum(sph_harm(m, l, phi_vals, theta_eq) * c for l, m, c in high
 
 fig3, axes3 = plt.subplots(1, 2, figsize=(16, 6))
 fig3.suptitle(r"Perfiles Térmicos Ecuatoriales ($\theta = \pi/2$)" "\n"
-              r"Simulación de Variaciones Angulares del CMB", fontsize=14, fontweight="bold") # CORREGIDO: r"..." y saltos de línea \n estándar
+              r"Simulación de Variaciones Angulares del CMB", fontsize=14, fontweight="bold") 
 
 ax_b = axes3[0]
 ax_b.plot(np.degrees(phi_vals), low_eq, color="darkorange", lw=2)
 ax_b.axhline(0, color="k", lw=0.8, ls="--")
 ax_b.fill_between(np.degrees(phi_vals), low_eq, 0, where=(low_eq > 0), alpha=0.25, color="red",   label="Caliente")
 ax_b.fill_between(np.degrees(phi_vals), low_eq, 0, where=(low_eq < 0), alpha=0.25, color="blue",  label="Frío")
-ax_b.set_xlabel(r"Longitud $\phi$ (grados)") # CORREGIDO: r"..."
-ax_b.set_ylabel(r"$\Delta T/T$ (u.a.)")     # CORREGIDO: r"..."
-ax_b.set_title(r"Multipolos Bajos ($\ell=2,3$)" "\nVariaciones lentas / gran escala angular", fontweight="bold") # CORREGIDO: r"..."
+ax_b.set_xlabel(r"Longitud $\phi$ (grados)") 
+ax_b.set_ylabel(r"$\Delta T/T$ (u.a.)")    
+ax_b.set_title(r"Multipolos Bajos ($\ell=2,3$)" "\nVariaciones lentas / gran escala angular", fontweight="bold") 
 ax_b.legend(fontsize=9)
 ax_b.grid(alpha=0.3)
 ax_b.set_xlim(0, 360)
@@ -160,8 +160,8 @@ ax_h.plot(np.degrees(phi_vals), high_eq, color="steelblue", lw=1.5)
 ax_h.axhline(0, color="k", lw=0.8, ls="--")
 ax_h.fill_between(np.degrees(phi_vals), high_eq, 0, where=(high_eq > 0), alpha=0.25, color="red",  label="Caliente")
 ax_h.fill_between(np.degrees(phi_vals), high_eq, 0, where=(high_eq < 0), alpha=0.25, color="blue", label="Frío")
-ax_h.set_xlabel(r"Longitud $\phi$ (grados)") # CORREGIDO: r"..."
-ax_h.set_ylabel(r"$\Delta T/T$ (u.a.)")     # CORREGIDO: r"..."
+ax_h.set_xlabel(r"Longitud $\phi$ (grados)") 
+ax_h.set_ylabel(r"$\Delta T/T$ (u.a.)")     
 ax_h.set_title(r"Multipolos Altos ($\ell=20$–$30$)" "\nVariaciones rápidas / pequeña escala angular", fontweight="bold") # CORREGIDO: r"..."
 ax_h.legend(fontsize=9)
 ax_h.grid(alpha=0.3)
